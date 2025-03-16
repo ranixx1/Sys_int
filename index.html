@@ -4,10 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
-        integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEz0+tcaEPQogQ0KaoGN26/zrn2oR1mR1DfLuWnOo7aBA=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="./style/output.css"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="./style/output.css" />
     <title>LOJA</title>
 </head>
 
@@ -20,11 +18,8 @@
 
             <span class="text-white font-medium">ENDEREÇO</span>
 
-            <div>
-                <span class="bg-green-600 px-4 py-1 rounded-lg mt-5 " id="date-span">
+            <div class="bg-green-600 px-4 py-1 rounded-lg mt-5 " id="date-span">
                     <span class="text-white font-medium">horario de funcionamento</span>
-
-                </span>
             </div>
         </div>
     </header>
@@ -41,93 +36,79 @@
     <div id="menu">
         <main class="grid grid-cols-1 md:grid-cols-2 gap-7 md:gap-10 mx-auto max-w-7xl px-2 mb-16 ">
             <!--PRODUTO ITEM-->
-            <div class="flex gap-2 ">
+            <div class="flex gap-2 w-full">
                 <img src="./assets/ex.jpg" alt="produto1"
                     class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-300">
-                <div>
+
+                <div class="w-full">
                     <p class="font-bold">nome produto</p>
                     <p class="text-sm">descrição</p>
-
                     <div class="flex items-center gap-2 justify-between mt-3">
-                        <p class="font-bold text-lg">20.00</p>
-                        <button class="bg-gray-900 px-5 rounded add-to-card-btn" data-name="produto1"
-                            data-price="20.00">
-
-
-                          <i class="fa fa-cart-plus text-lg text-white"></i>
+                        <p class="font-bold text-lg">15.00</p>
+                        <button class="bg-gray-900 px-5 rounded add-to-cart-btn" data-name="produto1"
+                            data-price="15.00">
+                            <i class="fa fa-cart-plus text-lg text-white"></i>
                         </button>
                     </div>
-
-
                 </div>
             </div>
             <!-- FIM PRODUTO ITEM-->
 
             <!--PRODUTO ITEM-->
-            <div class="flex gap-2 ">
+            <div class="flex gap-2 w-full">
                 <img src="./assets/ex.jpg" alt="produto2"
                     class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-300">
-                <div>
+
+                <div class="w-full">
                     <p class="font-bold">nome produto</p>
                     <p class="text-sm">descrição</p>
-
                     <div class="flex items-center gap-2 justify-between mt-3">
-                        <p class="font-bold text-lg">20.00</p>
-                        <button class="bg-gray-900 px-5 rounded add-to-card-btn" data-name="produto2"
-                            data-price="20.00">
-
-
+                        <p class="font-bold text-lg">15.00</p>
+                        <button class="bg-gray-900 px-5 rounded add-to-cart-btn" data-name="produto2"
+                            data-price="15.00">
                             <i class="fa fa-cart-plus text-lg text-white"></i>
                         </button>
                     </div>
-
-
                 </div>
             </div>
             <!-- FIM PRODUTO ITEM-->
 
 
             <!--PRODUTO ITEM-->
-            <div class="flex gap-2 ">
+            <div class="flex gap-2 w-full">
                 <img src="./assets/ex.jpg" alt="produto3"
                     class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-300">
-                <div>
+
+                <div class="w-full">
                     <p class="font-bold">nome produto</p>
                     <p class="text-sm">descrição</p>
-
                     <div class="flex items-center gap-2 justify-between mt-3">
-                        <p class="font-bold text-lg">26.00</p>
-                        <button class="bg-gray-900 px-5 rounded add-to-card-btn" data-name="produto3"
-                            data-price="26.00">
-
-
+                        <p class="font-bold text-lg">15.00</p>
+                        <button class="bg-gray-900 px-5 rounded add-to-cart-btn" data-name="produto3"
+                            data-price="15.00">
                             <i class="fa fa-cart-plus text-lg text-white"></i>
                         </button>
                     </div>
-
-
                 </div>
             </div>
             <!-- FIM PRODUTO ITEM-->
 
 
             <!--PRODUTO ITEM-->
-            <div class="flex gap-2 ">
+            <div class="flex gap-2 w-full">
                 <img src="./assets/ex.jpg" alt="produto4"
                     class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-300">
-                <div>
+
+                <div class="w-full">
                     <p class="font-bold">nome produto</p>
                     <p class="text-sm">descrição</p>
-
                     <div class="flex items-center gap-2 justify-between mt-3">
-                        <p class="font-bold text-lg">26.00</p>
-                        <button class="bg-gray-900 px-5 rounded add-to-card-btn" data-name="produto4"
-                            data-price="26.00">
+                        <p class="font-bold text-lg">15.00</p>
+                        <button class="bg-gray-900 px-5 rounded add-to-cart-btn" data-name="produto4"
+                            data-price="15.00">
                             <i class="fa fa-cart-plus text-lg text-white"></i>
                         </button>
                     </div>
-
-
                 </div>
             </div>
             <!-- FIM PRODUTO ITEM-->
@@ -140,48 +121,50 @@
         </div>
 
         <!--GRID BEBIDAS-->
-<div class="grid grid-cols-1 md:grid-cols-2 gap-7 md:gap-10 mx-auto max-w-7xl px-2 mb-16" id="menu-bebidas">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-7 md:gap-10 mx-auto max-w-7xl px-2 mb-16" id="menu-bebidas">
 
-    <!--BEBIDA ITEM 1-->
-    <div class="flex gap-2 w-full">
-        <img src="./assets/ex.jpg" alt="produtodf1"
-            class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-300">
+            <!--BEBIDA ITEM 1-->
+            <div class="flex gap-2 w-full">
+                <img src="./assets/ex.jpg" alt="produtodf1"
+                    class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-300">
 
-        <div class="w-full">
-            <p class="font-bold">nome produto</p>
-            <p class="text-sm">descrição</p>
-            <div class="flex items-center gap-2 justify-between mt-3">
-                <p class="font-bold text-lg">15.00</p>
-                <button class="bg-gray-900 px-5 rounded add-to-card-btn" data-name="produtodf1" data-price="15.00">
-                    <i class="fa fa-cart-plus text-lg text-white"></i>
-                </button>
+                <div class="w-full">
+                    <p class="font-bold">nome produto</p>
+                    <p class="text-sm">descrição</p>
+                    <div class="flex items-center gap-2 justify-between mt-3">
+                        <p class="font-bold text-lg">15.00</p>
+                        <button class="bg-gray-900 px-5 rounded add-to-cart-btn" data-name="produtodf1"
+                            data-price="15.00">
+                            <i class="fa fa-cart-plus text-lg text-white"></i>
+                        </button>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
-    <!-- FIM BEBIDA ITEM 1-->
+            <!-- FIM BEBIDA ITEM 1-->
 
-    <!--BEBIDA ITEM 2-->
-    <div class="flex gap-2 w-full">
-        <img src="./assets/ex.jpg" alt="produtodf2"
-            class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-300">
+            <!--BEBIDA ITEM 2-->
+            <div class="flex gap-2 w-full">
+                <img src="./assets/ex.jpg" alt="produtodf2"
+                    class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-300">
 
-        <div class="w-full">
-            <p class="font-bold">nome produto</p>
-            <p class="text-sm">descrição</p>
-            <div class="flex items-center gap-2 justify-between mt-3">
-                <p class="font-bold text-lg">15.00</p>
-                <button class="bg-gray-900 px-5 rounded add-to-card-btn" data-name="produtodf2" data-price="15.00">
-                    <i class="fa fa-cart-plus text-lg text-white"></i>
-                </button>
+                <div class="w-full">
+                    <p class="font-bold">nome produto</p>
+                    <p class="text-sm">descrição</p>
+                    <div class="flex items-center gap-2 justify-between mt-3">
+                        <p class="font-bold text-lg">15.00</p>
+                        <button class="bg-gray-900 px-5 rounded add-to-cart-btn" data-name="produtodf2"
+                            data-price="15.00">
+                            <i class="fa fa-cart-plus text-lg text-white"></i>
+                        </button>
+                    </div>
+                </div>
             </div>
+            <!-- FIM BEBIDA ITEM 2-->
+
         </div>
-    </div>
-    <!-- FIM BEBIDA ITEM 2-->
+        <!-- FIM GRID BEBIDAS -->
 
-</div>
-<!-- FIM GRID BEBIDAS -->
-
-    <!-- FIM GRID BEBIDAS-->
+        <!-- FIM GRID BEBIDAS-->
 
 
     </div>
@@ -220,7 +203,7 @@
 
     <!--BUTTON CART FOOTER-->
     <footer class="w-full bg-red-500 py-3 fixed bottom-0 z-40 flex items-center justify-center">
-        <button class="flex items-center gap-2 text-white font-bold" id="card-btn">
+        <button class="flex items-center gap-2 text-white font-bold" id="cart-btn">
             (<span id="cart-count">0</span>)
             veja seu carrinho
             <i class="fa fa-cart-plus text-lg text-white"></i>
