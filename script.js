@@ -131,15 +131,34 @@ addressInput.addEventListener("input", function(event){
         addressWarn.classList.add("hidden")
     }
 })
-
+//finalizar pedido
 checkoutBtn.addEventListener("click", function(){
-    if(cart.length === 0) return;
+    //const isOpen = checkRestaurantOpen();
+    //if(isOpen){
+        //alert("RESTAURANTE FECHADO NO MOMENTO")
+       // return;}
+if(cart.length === 0) return;
 
-    if(addressInput.value === ""){
-        addressWarn.classList.remove("hidden")
-        addressInput.classList.add("border-red-500")
-        return;
+if(addressInput.value === ""){
+    addressWarn.classList.remove("hidden")
+    addressInput.classList.add("border-red-500")
+    return;
     }
+
+    //Enviar o pedido para api whatsapp
+
+    const cartItems = cart.map((item) => {
+        return (
+           ` ${item.name} Quantidade : (${item.quantity}) Preço:R$${item.price}|` 
+        )
+    }) .join("")
+    const message = encodeURIComponent(cartItems)
+    const phone = "84996535977"
+
+    window.open (`https://wa.me/${phone}?text=${message} Endereço: ${addressInput.value}`, "_blank");
+
+    cart = []
+    updateCartModal();
 
 })
 //Verificar a hora e manipular o card horario
