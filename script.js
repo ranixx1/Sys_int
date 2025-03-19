@@ -133,10 +133,23 @@ addressInput.addEventListener("input", function(event){
 })
 //finalizar pedido
 checkoutBtn.addEventListener("click", function(){
-    //const isOpen = checkRestaurantOpen();
-    //if(isOpen){
-        //alert("RESTAURANTE FECHADO NO MOMENTO")
-       // return;}
+    const isOpen = checkRestaurantOpen();
+    if(isOpen){
+        Toastify({
+            text: "Ops o restaurante esá fechado",
+            duration: 3000,
+            close: true,
+            gravity: "top", // `top` or `bottom`
+             position: "right", // `left`, `center` or `right`
+            stopOnFocus: true, // Prevents dismissing of toast on hover
+            style: {
+            background: "#ef4444",
+         },
+        }).showToast();
+
+
+        
+        return;}
 if(cart.length === 0) return;
 
 if(addressInput.value === ""){
