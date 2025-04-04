@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
- "dev": "npx tailwindcss -i ./style/style.css -o ./style/output.css --watch"
+    "dev": "npx tailwindcss -i ./style/style.css -o ./style/output.css --watch"
   },
   "repository": {
     "type": "git",

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
@@ -23,17 +23,17 @@
     <title>LOJA</title>
 </head>
 
-<body>
+<body class="bg-bege-claro">
     <!--HEADER-->
-    <header class="w-full h-[420px] bg-zinc-900 bg-home bg-cover bg-center">
+    <header class="w-full h-[320px] bg-bege-claro bg-home bg-cover bg-center">
         <div class="w-full h-full flex flex-col justify-center items-center">
-            <img src="./assets/ex.jpg" alt="logo" class="w-32 h-32 rounded-full shadow-lg hover:scale-110 duration-200">
-            <h1 class="text-4xl mt-4 mb-2 font-bold text-white">Nome da loja</h1>
+            <img src="./assets/logo.png" alt="logo" class="w-32 h-32 rounded-full shadow-lg hover:scale-110 duration-200">
+            <h1 class="text-4xl mt-4 mb-2 font-bold text-verde-escuro">Moda Íntima</h1>
 
-            <span class="text-white font-medium">ENDEREÇO</span>
+            <span class="text-verde-escuro font-medium">Rio Grande do Norte</span>
 
-            <div class="bg-green-600 px-4 py-1 rounded-lg mt-5 " id="date-span">
-                    <span class="text-white font-medium">horario de funcionamento</span>
+            <div class="bg-verde-escuro px-4 py-1 rounded-lg mt-5 " id="date-span">
+                    <span class="text-white font-medium">Online</span>
             </div>
         </div>
     </header>
@@ -41,11 +41,16 @@
 
     <!--FIM HEADER-->
 
-    <h2 class="text-2xl md:text-3xl font-bold text-center mt-9 mb-6">
+    <h2 class="bg-bege-claro text-2xl md:text-3xl font-bold text-center mt-9 mb-10 text-verde-escuro">
         Conheça nossos produtos
     </h2>
-
-
+    
+    <div class="mx-auto max-w-7xl px-2 mt-4">
+        <h2 class="text-verde-escuro font-bold text-3xl mb-10" >
+            Calcinhas
+        </h2>
+    </div>
+    
     <!--INICIO MENU-->
     <div id="menu">
         <main class="grid grid-cols-1 md:grid-cols-2 gap-7 md:gap-10 mx-auto max-w-7xl px-2 mb-16 ">
@@ -59,7 +64,7 @@
                     <p class="text-sm">descrição</p>
                     <div class="flex items-center gap-2 justify-between mt-3">
                         <p class="font-bold text-lg">15.00</p>
-                        <button class="bg-gray-900 px-5 rounded add-to-cart-btn" data-name="produto1"
+                        <button class="bg-verde-escuro px-5 rounded add-to-cart-btn" data-name="produto1"
                             data-price="15.00">
                             <i class="fa fa-cart-plus text-lg text-white"></i>
                         </button>
@@ -78,7 +83,7 @@
                     <p class="text-sm">descrição</p>
                     <div class="flex items-center gap-2 justify-between mt-3">
                         <p class="font-bold text-lg">15.00</p>
-                        <button class="bg-gray-900 px-5 rounded add-to-cart-btn" data-name="produto2"
+                        <button class="bg-verde-escuro px-5 rounded add-to-cart-btn" data-name="produto2"
                             data-price="15.00">
                             <i class="fa fa-cart-plus text-lg text-white"></i>
                         </button>
@@ -98,7 +103,7 @@
                     <p class="text-sm">descrição</p>
                     <div class="flex items-center gap-2 justify-between mt-3">
                         <p class="font-bold text-lg">15.00</p>
-                        <button class="bg-gray-900 px-5 rounded add-to-cart-btn" data-name="produto3"
+                        <button class="bg-verde-escuro px-5 rounded add-to-cart-btn" data-name="produto3"
                             data-price="15.00">
                             <i class="fa fa-cart-plus text-lg text-white"></i>
                         </button>
@@ -118,7 +123,7 @@
                     <p class="text-sm">descrição</p>
                     <div class="flex items-center gap-2 justify-between mt-3">
                         <p class="font-bold text-lg">15.00</p>
-                        <button class="bg-gray-900 px-5 rounded add-to-cart-btn" data-name="produto4"
+                        <button class="bg-verde-escuro px-5 rounded add-to-cart-btn" data-name="produto4"
                             data-price="15.00">
                             <i class="fa fa-cart-plus text-lg text-white"></i>
                         </button>
@@ -129,8 +134,8 @@
         </main>
 
         <div class="mx-auto max-w-7xl px-2 my-2">
-            <h2 class="font-bold text-3xl">
-                bebidas
+            <h2 class="font-bold text-3xl mb-10">
+                Sutiãs
             </h2>
         </div>
 
@@ -143,11 +148,11 @@
                     class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-300">
 
                 <div class="w-full">
-                    <p class="font-bold">nome produto</p>
+                    <p class="font-bold">Sutiã de Renda</p>
                     <p class="text-sm">descrição</p>
                     <div class="flex items-center gap-2 justify-between mt-3">
                         <p class="font-bold text-lg">15.00</p>
-                        <button class="bg-gray-900 px-5 rounded add-to-cart-btn" data-name="produtodf1"
+                        <button class="bg-verde-escuro px-5 rounded add-to-cart-btn" data-name="produtodf1"
                             data-price="15.00">
                             <i class="fa fa-cart-plus text-lg text-white"></i>
                         </button>
@@ -162,11 +167,11 @@
                     class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-300">
 
                 <div class="w-full">
-                    <p class="font-bold">nome produto</p>
+                    <p class="font-bold">Sutiã com preenchimento</p>
                     <p class="text-sm">descrição</p>
                     <div class="flex items-center gap-2 justify-between mt-3">
                         <p class="font-bold text-lg">15.00</p>
-                        <button class="bg-gray-900 px-5 rounded add-to-cart-btn" data-name="produtodf2"
+                        <button class="bg-verde-escuro px-5 rounded add-to-cart-btn" data-name="produtodf2"
                             data-price="15.00">
                             <i class="fa fa-cart-plus text-lg text-white"></i>
                         </button>
@@ -224,7 +229,7 @@
     <!--MODAL CART-->
 
     <!--BUTTON CART FOOTER-->
-    <footer class="w-full bg-red-500 py-3 fixed bottom-0 z-40 flex items-center justify-center">
+    <footer class="w-full bg-verde-escuro py-3 fixed bottom-0 z-40 flex items-center justify-center">
         <button class="flex items-center gap-2 text-white font-bold" id="cart-btn">
             (<span id="cart-count">0</span>)
             veja seu carrinho
