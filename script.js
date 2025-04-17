@@ -1,173 +1,257 @@
-const menu = document.getElementById("menu");
 const cartBtn = document.getElementById("cart-btn");
 const cartModal = document.getElementById("cart-modal");
 const cartItemsContainer = document.getElementById("cart-items");
 const cartTotal = document.getElementById("cart-total");
 const checkoutBtn = document.getElementById("checkout-btn");
-const closeModalBtn = document.getElementById("close-modal");
 const cartCounter = document.getElementById("cart-count");
 const addressInput = document.getElementById("address");
 const addressWarn = document.getElementById("address-warn");
+const productModal = document.getElementById('productModal');
 
+// Variáveis globais
 let cart = [];
+let selectedColor = '';
+let selectedSize = '';
+let quantity = 1;
 
-// Abrir o modal do carrinho
-cartBtn.addEventListener("click", function () {
+// Funções de Modal
+function openModal(modal) {
+    modal.classList.remove('hidden');
+    modal.classList.add('animate-fade-in');
+    modal.classList.remove('animate-fade-out');
+}
+
+function closeModal(modal) {
+    modal.classList.add('animate-fade-out');
+    modal.classList.remove('animate-fade-in');
+    setTimeout(() => modal.classList.add('hidden'), 200);
+}
+
+function closeAllModals() {
+    closeModal(cartModal);
+    closeModal(productModal);
+}
+
+// Event Listeners
+document.addEventListener('DOMContentLoaded', () => {
+    document.querySelector('#productModal .close').addEventListener('click', closeAllModals);
+    document.getElementById('close-modal').addEventListener('click', closeAllModals);
+    
+    document.addEventListener('click', (e) => {
+        if (e.target === cartModal || e.target === productModal) closeAllModals();
+    });
+});
+
+// Controle de Quantidade
+document.getElementById('increment')?.addEventListener('click', () => {
+    quantity = Math.min(quantity + 1, 10);
+    document.getElementById('quantity').value = quantity;
+});
+
+document.getElementById('decrement')?.addEventListener('click', () => {
+    quantity = Math.max(quantity - 1, 1);
+    document.getElementById('quantity').value = quantity;
+});
+
+document.getElementById('quantity')?.addEventListener('change', (e) => {
+    quantity = Math.min(Math.max(parseInt(e.target.value) || 1, 1), 10);
+    e.target.value = quantity;
+});
+
+// Seleção de Tamanho e Cor
+document.querySelectorAll('.size-option').forEach(button => {
+    button.addEventListener('click', function() {
+        document.querySelectorAll('.size-option').forEach(btn => {
+            btn.classList.remove('bg-emerald-600', 'text-white', 'border-emerald-700');
+        });
+        this.classList.add('bg-emerald-600', 'text-white', 'border-emerald-700');
+        selectedSize = this.textContent;
+    });
+});
+
+document.querySelectorAll('.color-option').forEach(button => {
+    button.addEventListener('click', function() {
+        document.querySelectorAll('.color-option').forEach(btn => {
+            btn.classList.remove('selected', 'ring-2', 'ring-emerald-600', 'scale-110');
+        });
+        this.classList.add('selected', 'ring-2', 'ring-emerald-600', 'scale-110');
+        selectedColor = this.dataset.color;
+    });
+});
+
+// Abrir Modais
+cartBtn.addEventListener("click", () => {
+    openModal(cartModal);
     updateCartModal();
-    cartModal.style.display = "flex";
 });
 
-// Fechar o modal quando clicar fora
-cartModal.addEventListener("click", function (event) {
-    if (event.target === cartModal) {
-        cartModal.style.display = "none";
+document.querySelectorAll('.product').forEach(product => {
+    product.addEventListener('click', (e) => {
+        // Resetar seleções anteriores
+        selectedColor = '';
+        selectedSize = '';
+        quantity = 1;
+        document.querySelectorAll('.size-option, .color-option').forEach(btn => {
+            btn.classList.remove(
+                'bg-emerald-600', 
+                'text-white', 
+                'border-emerald-700',
+                'selected',
+                'ring-2',
+                'ring-emerald-600',
+                'scale-110'
+            );
+        });
+        document.getElementById('quantity').value = 1;
+
+        // Carregar dados do produto
+        const img = product.querySelector('img').src;
+        const title = product.querySelector('p.font-bold').textContent;
+        const price = parseFloat(product.querySelector('p.font-bold.text-lg').textContent.replace('R$ ', ''));
+        const description = product.querySelector('p.text-sm').textContent;
+
+        document.getElementById('modalImage').src = img;
+        document.getElementById('modalTitle').textContent = title;
+        document.getElementById('modalPrice').textContent = `R$ ${price.toFixed(2)}`;
+        document.getElementById('modalDescription').textContent = description;
+
+        openModal(productModal);
+    });
+});
+
+// Carrinho
+document.querySelector('.add-to-cart-modal').addEventListener('click', () => {
+    if (!selectedSize || !selectedColor) {
+        showToast('Selecione o tamanho e a cor!');
+        return;
     }
+
+    const title = document.getElementById('modalTitle').textContent;
+    const price = parseFloat(document.getElementById('modalPrice').textContent.replace('R$ ', ''));
+    const quantity = parseInt(document.getElementById('quantity').value);
+
+    addToCart({
+        name: `${title} - Cor: ${selectedColor} - Tamanho: ${selectedSize}`,
+        price: price,
+        quantity: quantity,
+        color: selectedColor,
+        size: selectedSize
+    });
+
+    closeAllModals();
 });
 
-// Fechar modal ao clicar no botão "Fechar"
-closeModalBtn.addEventListener("click", function () {
-    cartModal.style.display = "none";
-});
-
-// Capturar clique nos botões de adicionar ao carrinho
-menu.addEventListener("click", function (event) {
-    let parentButton = event.target.closest(".add-to-cart-btn");
-
-    if (parentButton) {
-        const name = parentButton.getAttribute("data-name");
-        const price = parseFloat(parentButton.getAttribute("data-price"));
-
-        addToCart(name, price);
-    }
-});
-
-// Função para adicionar ao carrinho
-function addToCart(name, price) {
-    const existingItem = cart.find(item => item.name === name);
+function addToCart(newItem) {
+    const existingItem = cart.find(item => 
+        item.name === newItem.name &&
+        item.color === newItem.color &&
+        item.size === newItem.size
+    );
 
     if (existingItem) {
-        existingItem.quantity += 1;
+        existingItem.quantity += newItem.quantity;
     } else {
-        cart.push({
-            name,
-            price,
-            quantity: 1,
-        });
+        cart.push(newItem);
     }
     updateCartModal();
 }
 
-// Atualizar o modal do carrinho
 function updateCartModal() {
-    cartItemsContainer.innerHTML = ""; // Garante que os itens não se acumulem
-    
+    cartItemsContainer.innerHTML = '';
     let total = 0;
-    let totalItems = 0; // Contagem total de itens no carrinho
+    let totalItems = 0;
 
     cart.forEach(item => {
-        const cartItemElement = document.createElement("div");
-        cartItemElement.classList.add("flex", "justify-between", "mb-4", "flex-col");
-
-        cartItemElement.innerHTML = `
-            <div class="flex items-center justify-between">
+        const itemElement = document.createElement('div');
+        itemElement.className = 'flex justify-between items-center mb-4 gap-4 p-3 bg-white rounded-lg shadow-sm';
+        itemElement.innerHTML = `
+            <div class="flex items-center gap-4 flex-1">
+                <div class="${getColorClass(item.color)} w-6 h-6 rounded-full border-2"></div>
                 <div>
-                    <p class="font-medium">${item.name}</p>
-                    <p>Quantidade: ${item.quantity}</p>
-                    <p class="font-medium mt-2">R$ ${(item.price * item.quantity).toFixed(2)}</p>    
+                    <p class="font-medium">${item.name.split(' - ')[0]}</p>
+                    <div class="text-sm text-gray-600">
+                        <p>Tamanho: ${item.size}</p>
+                        <p>Cor: ${item.color}</p>
+                    </div>
                 </div>
-                <button class="remove-from-cart-btn bg-red-500 text-white px-2 py-1 rounded" data-name="${item.name}">
+            </div>
+            <div class="text-right">
+                <p class="font-medium">${item.quantity}x</p>
+                <p class="text-emerald-600 font-medium">R$ ${(item.price * item.quantity).toFixed(2)}</p>
+                <button class="remove-from-cart-btn mt-2 text-red-500 hover:text-red-700 text-sm" 
+                        data-name="${item.name}">
                     Remover
-                </button>   
+                </button>
             </div>
         `;
 
+        cartItemsContainer.appendChild(itemElement);
         total += item.price * item.quantity;
         totalItems += item.quantity;
-        cartItemsContainer.appendChild(cartItemElement);
     });
 
-    cartTotal.textContent = total.toLocaleString("pt-BR", {
-        style: "currency",
-        currency: "BRL"
+    cartTotal.textContent = total.toLocaleString('pt-BR', { 
+        style: 'currency', 
+        currency: 'BRL' 
     });
-
-    cartCounter.textContent = totalItems; // Agora reflete a quantidade total de produtos
+    cartCounter.textContent = totalItems;
 }
 
-// Função para remover o item do carrinho
-cartItemsContainer.addEventListener("click", function (event) {
-    if (event.target.classList.contains("remove-from-cart-btn")) {
-        const name = event.target.getAttribute("data-name");
-        removeItemCart(name);
-    }
-});
+// Funções Auxiliares
+function getColorClass(color) {
+    const colorMap = {
+        'Branco': 'bg-white border-gray-300',
+        'Preto': 'bg-black border-black',
+        'Vermelho': 'bg-red-600 border-red-700',
+        'Azul': 'bg-blue-600 border-blue-700'
+    };
+    return colorMap[color] || 'bg-gray-200 border-gray-300';
+}
 
-function removeItemCart(name) {
-    const index = cart.findIndex(item => item.name === name);
-
-    if (index !== -1) {
-        const item = cart[index];
-
-        if (item.quantity > 1) {
-            item.quantity -= 1;
-        } else {
-            cart.splice(index, 1);
-        }
+cartItemsContainer.addEventListener('click', (e) => {
+    if (e.target.classList.contains('remove-from-cart-btn')) {
+        const itemName = e.target.dataset.name;
+        cart = cart.filter(item => item.name !== itemName);
         updateCartModal();
     }
-}
-
-// Validação do endereço de entrega
-addressInput.addEventListener("input", function (event) {
-    let inputValue = event.target.value;
-
-    if (inputValue !== "") {
-        addressInput.classList.remove("border-red-500");
-        addressWarn.classList.add("hidden");
-    }
 });
 
-// Finalizar pedido
-checkoutBtn.addEventListener("click", function () {
+checkoutBtn.addEventListener('click', () => {
     if (cart.length === 0) {
-        Toastify({
-            text: "Seu carrinho está vazio!",
-            duration: 3000,
-            close: false,
-            gravity: "top",
-            position: "right",
-            stopOnFocus: true,
-            style: { background: "#ef4444" },
-        }).showToast();
+        showToast('Seu carrinho está vazio!');
         return;
     }
 
-    if (addressInput.value.trim() === "") {
-        addressWarn.classList.remove("hidden");
-        addressInput.classList.add("border-red-500");
+    if (!addressInput.value.trim()) {
+        addressWarn.classList.remove('hidden');
+        addressInput.classList.add('border-red-500');
         return;
     }
 
-    Toastify({
-        text: "Ops, o restaurante está fechado",
-        duration: 3000,
-        close: false,
-        gravity: "top",
-        position: "right",
-        stopOnFocus: true,
-        style: { background: "#ef4444" },
-    }).showToast();
+    const message = cart.map(item => 
+        `${item.name} - ${item.quantity}x | R$ ${(item.price * item.quantity).toFixed(2)}`
+    ).join('\n');
 
-    // Enviar o pedido para a API do WhatsApp
-    const cartItems = cart.map((item) => 
-        `${item.name} Quantidade: (${item.quantity}) Preço: R$${(item.price * item.quantity).toFixed(2)}`
-    ).join("\n");
-
-    const message = encodeURIComponent(cartItems + `\nEndereço: ${addressInput.value}`);
-    const phone = "5584996535977";
-
-    window.open(`https://wa.me/${phone}?text=${message}`, "_blank");
+    const phone = "SEU_NUMERO_AQUI";
+    const encodedMessage = encodeURIComponent(`${message}\n\nEndereço: ${addressInput.value}`);
+    window.open(`https://wa.me/${phone}?text=${encodedMessage}`, '_blank');
 
     cart = [];
+    addressInput.value = '';
     updateCartModal();
+    closeAllModals();
 });
+
+function showToast(text) {
+    Toastify({
+        text: text,
+        duration: 3000,
+        gravity: "top",
+        position: "right",
+        style: { 
+            background: "#ef4444",
+            borderRadius: "8px",
+            fontWeight: "500"
+        }
+    }).showToast();
+}
