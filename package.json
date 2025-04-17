@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "dev": "npx tailwindcss -i ./style/style.css -o ./style/output.css --watch"
+    "dev": "npx tailwindcss -i ./style/style.css -o ./style/output.css --watch",
+    "build": "NODE_OPTIONS=--max-old-space-size=4096 next build"
   },
   "repository": {
     "type": "git",

@@ -4,14 +4,20 @@ module.exports = {
   theme: {
     extend: {
       colors: {
+        // Cores personalizadas
         "bege-claro": "#EEDDC8",
         "bege-escuro": "#a24c5e",
         "verde-escuro": "#1D2B20",
-        // Adicionando novas cores sugeridas
-        primary: "#1D2B20",       // Verde escuro
-        secondary: "#EEDDC8",     // Bege claro
-        accent: "#a24c5e",        // Bege escuro
-        danger: "#EF4444"         // Vermelho para erros
+        
+        // Cores do sistema Tailwind
+        "emerald-600": "#059669",
+        "emerald-700": "#047857", // Corrigido o valor HEX
+        
+        // Mapeamento semântico
+        primary: "#1D2B20",
+        secondary: "#EEDDC8",
+        accent: "#a24c5e",
+        danger: "#EF4444"
       },
       backgroundImage: {
         "home": "url('/assets/img')"
@@ -33,4 +39,10 @@ module.exports = {
     },
   },
   plugins: [],
+  // Adicione para garantir que as classes dinâmicas sejam incluídas
+  safelist: [
+    {
+      pattern: /(bg|text|border)-(emerald-600|emerald-700|bege-claro|verde-escuro)/,
+    }
+  ]
 }
