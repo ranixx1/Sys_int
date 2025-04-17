@@ -232,7 +232,7 @@ checkoutBtn.addEventListener('click', () => {
         `${item.name} - ${item.quantity}x | R$ ${(item.price * item.quantity).toFixed(2)}`
     ).join('\n');
 
-    const phone = "84996535977"; // Número de telefone do WhatsApp
+    const phone = "5584996535977"; // Número de telefone do WhatsApp
     const encodedMessage = encodeURIComponent(`${message}\n\nEndereço: ${addressInput.value}`);
     window.open(`https://wa.me/${phone}?text=${encodedMessage}`, '_blank');
 
